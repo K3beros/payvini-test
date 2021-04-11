@@ -5,6 +5,8 @@ const authJwt = require("./verifyJwtToken");
 module.exports = function (app) {
   const controller = require("../controller/controller.js");
 
+  app.get("/", controller.getWelcomePage);
+
   app.post(
     "/api/auth/signup",
     [verifySignUp.checkDuplicateUserNameOrEmail],
@@ -15,9 +17,7 @@ module.exports = function (app) {
 
   app.get("/api/test/user", [authJwt.verifyToken], controller.userContent);
 
-  app.get("*", (req, res) => {
-    let url = path.join(__dirname, "../../client/build", "index.html");
-    if (!url.startsWith("/app/")) url = url.substring(1);
-    res.sendFile(url);
-  });
+  app.get('*', (req, res) => res.status(200).send({
+    message: 'Welcome to this API.',
+  }));
 };

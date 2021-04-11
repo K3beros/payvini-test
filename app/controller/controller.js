@@ -7,6 +7,13 @@ var bcrypt = require("bcryptjs");
 
 exports.signup = (req, res) => {
   User.create({
+    firstname: req.body.firstname,
+    lastname: req.body.lastname,
+    address:req.body.address,
+    email: req.body.email,
+    phonenumber: req.body.phonenumber,
+    user_type: req.bodu.user_type,
+    gender: req.body.gender,
     username: req.body.username,
     password: bcrypt.hashSync(req.body.password, 8),
   })
@@ -78,3 +85,10 @@ exports.userContent = (req, res) => {
       });
     });
 };
+
+
+exports.getWelcomePage = (req, res) => {
+  return res.status(200).json({
+    message: "success"
+  })
+}
