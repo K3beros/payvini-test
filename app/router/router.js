@@ -9,7 +9,7 @@ module.exports = function (app) {
 
   app.post(
     "/api/auth/signup",
-    [verifySignUp.checkDuplicateUserNameOrEmail],
+    // [verifySignUp.checkDuplicateUserNameOrEmail],
     controller.signup
   );
 
